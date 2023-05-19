@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .row {
+            margin-bottom: 1.5%;
+            font-size: 125%;
+        }
+        .col-md-2 {
+            font-weight: bold;
+        }
+    </style>
+        <%- include("header", {active: "My Appointments", fullname: fullname}); %>
+        <a href="/patientDashboard/mypastappointments" style="margin-top: 3%;" class="btn btn-primary offset-1">back</a>
+        <div class="row  offset-md-1" style="margin-top: 3%;">
+            <div class="col-4 col-md-2">
+                Name:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.patientname %>
+            </div>
+            <div class="col-4 col-md-2">
+                Age:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.patientage %>
+            </div>
+        </div>
+        <div class="row  offset-md-1">
+            <div class="col-4 col-md-2">
+                Gender:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.patientgender %>
+            </div>
+            <div class="col-4 col-md-2 d-none d-md-block">
+                Email id:
+            </div>
+            <div class="col-6 col-md-4 d-none d-md-block">
+                <%= appointmentdetails.patientemail %>
+            </div>
+        </div>
+        <div class="row  offset-md-1">
+            <div class="col-4 col-md-2">
+                Mobile:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.patientmobilenumber %>
+            </div>
+            <div class="col-4 col-md-2">
+                Location:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.patientloc %>
+            </div>
+        </div>
+        <div class="row  offset-md-1">
+            <div class="col-4 col-md-2">
+                Problem:
+            </div>
+            <div class="col-6 col-md-10">
+                <%= appointmentdetails.description %>
+            </div>
+        </div>
+        <div class="row  offset-md-1">
+            <div class="col-4 col-md-2">
+                Body Temp:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.bodytemp %>
+            </div>
+            <div class="col-4 col-md-2">
+                Pulse Rate:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.pulserate %>
+            </div>
+        </div>
+        <div class="row  offset-md-1">
+            <div class="col-4 col-md-2">
+                Respiration rate:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.resprate %>
+            </div>
+            <div class="col-4 col-md-2">
+                BP:
+            </div>
+            <div class="col-6 col-md-4">
+                <%= appointmentdetails.bp %>
+            </div>
+        </div>
+        <div class="row  offset-md-1">
+            <div class="col-4 col-md-2">
+                Prescription:
+            </div>
+            <div class="col-6 col-md-10">
+                <%= appointmentdetails.pres %>
+            </div>
+        </div>
+        <div class="row  offset-md-1">
+            <div class="col-6 col-md-2">
+                Recommendations:
+            </div>
+            <div class="col-6 col-md-10">
+                <%= appointmentdetails.recommendations %>
+            </div>
+        </div>  
+       <%- include("footer"); %>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

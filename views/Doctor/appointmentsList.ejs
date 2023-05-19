@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        overflow-x: hidden;
+    }
+    .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 25%;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;}
+    .row-content {
+      margin: 0px auto;
+      padding: 50px 0px; 
+    display: block;}
+</style>
+<body>
+    <%- include("header", {active: "Appointments List", doctname: doctname}); %>
+    <div class="row" role="group" style="margin-top: 5%;">
+        <div class="col-3 offset-md-1 btn-group" aria-label="Basic example">
+          <a href="/doctorDashboard/appointments" class="btn btn-warning">Current Appointments</a>
+          <a href="/doctorDashboard/pastappointments" class="btn btn-secondary">Past Appointments</a>
+        </div>
+    </div>
+    <div style="margin-top: 5%;">
+        <table class="table table-striped col-md-10 offset-md-1" style="margin-top: 5%;">
+            <thead>
+              <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Doctor</th>
+                <th scope="col">Appointed time</th>
+                <th scope="col">Vitals</th>
+                <th scope="col">Create prescription</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% today = new Date();%>
+                <% date = (today.getDate()); %>
+                <% month = (today.getMonth()+1); %>
+                <% year = today.getFullYear(); %>
+                <% day = (today.getDay()+i)%7 %>
+                <% const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]; %>
+                <% for(var i = 0; i < appointments.length; i++) {%>
+                    <% if(appointments[i].date==date && username=="Staff123" && appointments[i].status==0) {%>
+                        <tr>
+                            <td><%= appointments[i].patientname %></td>
+                            <td><%= date %>-<%= month %>-<%= year %></td>
+                            <td><%= appointments[i].description %></td>
+                            <td><%= appointments[i].docname %></td>
+                            <td><%= appointments[i].apptime %></td>
+                            <% if(appointments[i].bp == "") {%>
+                                <center><td><i class="fa fa-times" style="font-size: 175%;" aria-hidden="true"></i></td></center>
+                            <% } %>
+                            <form action="/doctorDashboard/createpres" method="post">
+                                <input type="text" value='<%= appointments[i].patientname %>' class="d-none" name="patientname" id="patientname">
+                                <input type="text" value='<%= i %>' class="d-none" name="patientid" id="patientid">
+                                <td><button class="btn btn-success">Click Here</button></td>
+                            </form>
+                        </tr>
+                    <% } %>
+                    <% if(appointments[i].date==date && username!="Staff123" && (appointments[i].status==0 || appointments[i].status==1)) {%>
+                        <tr>
+                            <td><%= appointments[i].patientname %></td>
+                            <td><%= date %>-<%= month %>-<%= year %></td>
+                            <td><%= appointments[i].description %></td>
+                            <td><%= appointments[i].docname %></td>
+                            <td><%= appointments[i].apptime %></td>
+                            <% if(appointments[i].bp == "") {%>
+                                <center><td><i class="fa fa-times" style="font-size: 175%;" aria-hidden="true"></i></td></center>
+                            <% } else { %>
+                                <center><td><i class="fa fa-check" style="font-size: 175%;" aria-hidden="true"></i></td></center>
+                            <% } %>
+                            <form action="/doctorDashboard/createpres" method="post">
+                                <input type="text" value='<%= appointments[i].patientname %>' class="d-none" name="patientname" id="patientname">
+                                <input type="text" value='<%= i %>' class="d-none" name="patientid" id="patientid">
+                                <td><button class="btn btn-success">Click Here</button></td>
+                            </form>
+                        </tr>
+                    <% } %>
+                <% } %>
+            </tbody>
+          </table>
+    </div>
+    <footer class="footer">
+        <div class="offset-3 offset-md-5">
+            <p>© Copyright 2022 Health Vault</p>
+        </div>
+    </footer>
+</body>
+</html>

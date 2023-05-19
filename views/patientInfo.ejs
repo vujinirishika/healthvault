@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include("header", {active: "Book Appointment", fullname: fullname}); %>
+    <h3 style="margin-top: 4%;"><center>Select a doctor</center></h3>
+    <div class="row" style="margin-right: 3%;">
+        <% for(var i = 0; i < doctors.length; i++) {%>
+            <% if(doctors[i].specialist==specialist) { %>
+                <% name = doctors[i].name %>
+                <button class=" col-12 offset-md-1 col-md-3 btn" style="background-color: white; margin-top: 3%; border: 1px white;" onclick="fun('<%= name %>', '<%= date %>', '<%= username %>')">
+                <div class="book card" style="text-align: center; height: 250px;">
+                    <div class="card-body">
+                        <img src="https://imgs.search.brave.com/_nY3uwR_g3aWhWjoGX2CJy6ke08HVVCnevXkhE_v-nE/rs:fit:1200:1200:1/g:ce/aHR0cDovL3d3dy5w/dWJsaWNkb21haW5w/aWN0dXJlcy5uZXQv/cGljdHVyZXMvMjEw/MDAwL3ZlbGthL2Rv/Y3Rvci0xNDkwODA0/NjQzUmZpLmpwZw" height="15%">
+                        <h4> <%= doctors[i].name %></h4>
+                    </div>
+                </div>
+            </button>
+            <% } %>
+        <% } %>
+        </div>
+    <div class="row row-content">
+        <div class="col-12 col-md-9 offset-md-1" style="margin-top: 3%;">
+           <br>
+           <h2 style="text-align: center;">Appointment Information</h2> <br> 
+            <form action="/patientDashboard/appointmentinformation" method="POST" novalidate id="user-form">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" style="border: 1px solid black; width:100%" id="patientname" name="patientname" placeholder="Patient's Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" style="border: 1px solid black; width:100%"id="patientage" name="patientage" placeholder="Patient's Age" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-5" style="border: 1px solid black; margin-right: 7%; margin-left: 1.25%; border-radius: 5px;">
+                            Patient's Gender
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" style="border: 1px solid black; width:100%" class="form-control" id="patientemail" name="patientemail" placeholder="Patient's Email" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <input type="text" style="border: 1px solid black; width:100%" class="form-control" id="patientmno" name="patientmno" placeholder="Patient's Phone Number" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" style="border: 1px solid black; width:100%" class="form-control" id="patientloc" name="patientloc" placeholder="Location" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <textarea id="description" style="border: 1px solid black; width:100%" class="form-control"  name="description" rows="4" cols="50">Problem:  </textarea>                            
+                    </div>
+                </div>
+                <input id="doctor_name" name="doctorname" type="text" class="d-none">
+                <input id="date" name="date" type="text" class="d-none">
+                <input id="username" name="username" type="text" class="d-none">
+                <input id="apptime" name="apptime" type="text" value="Not yet confirmed" class="d-none">
+                <input id="pres" name="pres" type="text" value=" " class="d-none">
+                <input id="status" name="status" type="text" value="0" class="d-none">
+                <div class="col-md-2">
+                    <button type="submit"class="btn" style="border: 1px solid black; width:100%">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div style="margin-top: 16%;">
+        <%- include("footer"); %>
+    </div>
+    <script>
+        var today = new Date();
+        var sdate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
+        var edate = today.getFullYear()+'-'+(today.getMonth()+2)+'-'+(today.getDate()+1);
+        function fun(namefr, date, username) {
+            document.getElementById("doctor_name").value=namefr;
+            document.getElementById("date").value=date;
+            document.getElementById("username").value=username;
+            console.log(date)
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

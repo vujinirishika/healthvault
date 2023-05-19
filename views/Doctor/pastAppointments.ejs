@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    margin-top: 23%;
+    width: 100%;}
+    body {
+        overflow-x: hidden;
+    }
+</style>
+<body>
+    <%- include("header", {active: "Appointments List", doctname: doctname}); %>
+<div class="row" role="group" style="margin-top: 5%;">
+    <div class="col-3 offset-md-1 btn-group" aria-label="Basic example">
+      <a href="/doctorDashboard/appointments" class="btn btn-secondary">Current Appointments</a>
+      <a href="/doctorDashboard/pastappointments" class="btn btn-warning">Past Appointments</a>
+    </div>
+    <div class="offset-4 col-4">
+      <form action="/doctorDashboard/pastappointments" method="GET" class="form-group">
+          <div class="row">
+              <input type="text" name="search" placeholder="Search" class="form-control col-8">
+              <button type="submit" class="btn btn-warning offset-1 col-2">Search</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  <div id="doctor">
+      <table class="table table-striped col-10 offset-md-1"style="margin-top: 5%;">
+          <thead>
+            <tr>
+              <th scope="col">Patient Name</th>
+              <th scope="col">Patient age</th>
+              <th scope="col">Patient gender</th>
+              <th scope="col">Booked date</th>
+              <th scope="col">Doctor</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+              <div>
+                  <% for(var i = 0; i < appointments.length; i++) { %>
+                      <% sortAppointments1 = [...appointments] %>
+                      <% sortAppointments1.sort(function(x, y) { %>
+                          <% return x.date-y.date %>
+                      <% }); %>
+                      <% if(sortAppointments1[i].apptime!="Not yet confirmed" && sortAppointments1[i].docname == doctname && sortAppointments1[i].status != 0) { %>
+                        <tr>
+                            <td><%= sortAppointments1[i].patientname %></td>
+                            <td><%= sortAppointments1[i].patientage %></td>
+                            <td><%= sortAppointments1[i].patientgender %></td>
+                            <td><%= sortAppointments1[i].date %></td>
+                            <td><%= sortAppointments1[i].docname %></td>
+                            <td>
+                                <form action="/doctorDashboard/viewdetails" method="post">
+                                    <input name="name" value="<%= appointments[i].patientname %>" class="d-none" />
+                                    <button type="submit" class="btn btn-primary">Read more</button>
+                                </form>
+                            </td>
+                        </tr>
+                      <% } %>
+                    <% } %>
+              </div>
+          </tbody>
+      </table>
+      <footer class="footer">
+        <div class="offset-3 offset-md-5">
+            <p>© Copyright 2022 Health Vault</p>
+        </div>
+    </footer>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+</body>
+</html>

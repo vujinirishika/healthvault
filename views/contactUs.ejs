@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("header", {active: "contact", fullname: fullname}); %>
+    <div class="container">
+        <div class="row row-content">
+           <div class="col-12">
+              <center>
+                <h3>Submit a ticket</h3>
+              </center>
+           </div><br>
+            <div class="col-12 offset-md-1 col-md-9">
+                <form action="/patientDashboard/submitissue" method="post" class="form-group">
+                    <div class="form-group row">
+                        <label for="name" class="col-md-2 col-form-label">First Name </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="telnum" class=" col-12 col-md-2 col-form-label">Contact Tel.</label>
+                        <div class="col-md-10">
+                            <input type="tel" class="form-control" id="telnum" name="telnum" placeholder="Tel. Number">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="emailid" class="col-md-2 col-form-label">Email</label>
+                        <div class="col-md-10">
+                            <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="desc" class="col-md-2 col-form-label">Description</label>
+                        <div class="col-md-10">
+                            <textarea class="form-control" id="desc" name="desc" rows="12"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-md-2 col-md-10">
+                            <button type="submit"class="btn btn-primary">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+             <div class="col-12 col-md">
+            </div>
+       </div>
+       </div>
+    <%- include("footer"); %>
+</body>
+</html>

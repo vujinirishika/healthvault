@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        overflow-x: hidden;
+    }
+    .row {
+        margin-top: 2%;
+    }
+</style>
+<body>
+    <div>
+        <%- include("header", {active: "Home", fullname: fullname}); %>
+    </div>
+    <div>
+        <img src="/home.png" width="100%"/>
+    </div>
+    <h3 style="margin-top: 2%; font-weight: bold;" >
+        <center>
+            Explore Our Centres of Excellence
+        </center>
+    </h3>
+    <div class="row">
+        <div class="col-12 offset-2 col-md-3 offset-md-1">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/cardio.png" alt="Card image cap">
+            </div>
+        </div>
+        <div class="col-12 offset-2 col-md-3 offset-md-1">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/gastro.png" alt="Card image cap">
+            </div>
+        </div>
+        <div class="col-12 offset-2 col-md-3 offset-md-1">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/neuro.png" alt="Card image cap">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 2%;">
+        <div class="col-12 offset-2 col-md-3 offset-md-1">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/ortho.png" alt="Card image cap">
+            </div>
+        </div>
+        <div class="col-12 offset-2 col-md-3 offset-md-1">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/pulmo.png" alt="Card image cap">
+            </div>
+        </div>
+        <div class="col-12 offset-2 col-md-3 offset-md-1">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/radio.png" alt="Card image cap">
+            </div>
+        </div>
+    </div>
+    <%- include("footer"); %>
+</body>
+</html>

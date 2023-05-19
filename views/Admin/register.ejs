@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .row {
+            margin-bottom: 1%;
+        }
+        .register {
+            border: 1px solid gray;
+            margin-left: 1%;
+            margin-right: 1%;
+            margin-top: 5%;
+            margin-bottom: 1%;
+        }
+        .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;}
+    .row-content {
+      margin: 0px auto;
+      padding: 50px 0px; 
+    display: block;}
+    </style>
+    <%- include("header", {active: "Register Staff", adminname: adminname}); %>
+    <div class="register">
+        <center><h4>Admin Registration</h4></center><br>
+        <form action="/registeruser/registeradmin" class="form-group" method="POST">
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="username">UserName</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="password"  class="form-control"  id="password" name="password">
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="name">Name</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="text"  class="form-control" id="name" name="name">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="text"  class="form-control" id="email" name="email">
+                </div>
+            </div>    
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="mobilenumber">Mobile No</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="text"  class="form-control" name="mobilenumber" id="mobilenumber">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="dob">Date Of Birth</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="date"  class="form-control" id="dob" name="dob">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="age">Age</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="text"  class="form-control" name="age" id="age">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="gender">Gender</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="radio" name="gender" value="Male">
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" value="Female">
+                    <label for="female">Female</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 offset-md-5">
+                    <button type="submit" class="btn btn-primary">submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="register">
+        <center><h4>Doctor Registration</h4></center><br>
+        <form action="/registeruser/registerdoctor" class="form-group" method="POST">
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="username">UserName</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input class="form-control" type="text" id="username" name="username">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input class="form-control" type="password" id="password" name="password">
+                </div>
+            </div>  
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="name">Name</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input class="form-control" type="text" id="name" name="name">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="specialist">Select a speciality</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <select name="specialist" id="specialist">
+                        <option value="Cardilogy">Cardilogy</option>
+                        <option value="Dermotology">Dermotology</option>
+                        <option value="Dental">Dental</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="Staff">Staff</option>
+                    </select>
+                </div>
+            </div>    
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input class="form-control" type="text" id="email" name="email">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="mobilenumber">Mobile No:-</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input class="form-control" type="text" name="mobilenumber" id="mobilenumber">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="dob">Date Of Birth</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="date"  class="form-control" id="dob" name="dob">
+                </div>
+                <div class="col-6 offset-1 col-md-2">
+                    <label for="gender">Gender</label>
+                </div>
+                <div class="col-6 col-md-2">
+                    <input type="radio" id="male" name="gende" value="Male">
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gende" value="Female">
+                    <label for="female">Female</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 offset-md-5">
+                    <button type="submit" class="btn btn-primary">submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer class="footer">
+        <div class="offset-3 offset-md-5">
+            <p>© Copyright 2022 Health Vault</p>
+        </div>
+    </footer>
+</body>
+</html>

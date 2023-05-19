@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<style>
+    .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;}
+    .row-content {
+      margin: 0px auto;
+      padding: 50px 0px; 
+    display: block;}
+</style>
+<body>
+    <%- include("header", {active: "Book Appointment", adminname: adminname}); %>
+    <div class="row row-content">
+        <div class="col-12 col-md-9 offset-md-1" style="margin-top: 6%;">
+           <br>
+           <h2 style="text-align: center; margin-bottom: 7%;">Appointment Information</h2> <br> 
+            <form action="/adminDashboard/appointmentdetails" method="POST" novalidate id="user-form">
+                <div class="form-group row">
+                    <div class=" offset-md-3 col-md-2">
+                        Choose specialist:
+                    </div>
+                    <div class="col-md-6">
+                        <div class="dropdown">
+                            <select name="speciality" id="speciality" class="form-control" style="width: 100%; border: 1px solid black;">
+                              <option class="dropdown-item" value="Cardilogy">Cardilogy</option>
+                              <option class="dropdown-item" value="Dermotology">Dermotology</option>
+                              <option class="dropdown-item" value="Dental">Dental</option>
+                              <option class="dropdown-item" value="Neurology">Neurology</option>
+                            </select>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="form-group row">
+                    <div class=" offset-md-3 col-md-2">
+                        Choose date:
+                    </div>
+                    <div class="col-md-6">
+                        <!-- <input type="date" id="date" style="border: 1px solid black; width:100%" class="form-control" name="date" value=`${sdate}` min=`${sdate} max=`${edate}> -->
+                        <% for(var i = 0; i <= 7; i++) {%>
+                            <% today = new Date();%>
+                            <% date = (today.getDate()+i); %>
+                            <% month = (today.getMonth()+1); %>
+                            <% year = today.getFullYear(); %>
+                            <% day = (today.getDay()+i)%7 %>
+                            <% const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]; %>
+                            <a href="#" class="btn btn-outline-success" style="margin-left: 2%; margin-bottom: 3%;" onclick="fun('<%= date %>')">
+                            <%= date %>-<%= month %>-<%= year %><br><%= weekday[day] %>
+                            </a>
+                        <% } %>
+                    </div>
+                </div><br>
+                <input type="text" name="date" class="d-none" id="date">
+                <div class="form-group row">
+                    <div class=" offset-md-5 col-md-2">
+                        <button type="submit"class="btn" style="border: 1px solid black; width:100%">
+                            Ok
+                         </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="offset-3 offset-md-5">
+            <p>© Copyright 2022 Health Vault</p>
+        </div>
+    </footer>
+    <script>
+        function fun(date) {
+            document.getElementById("date").value=(date);
+            console.log((date))
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <style>
+        .row-1 {
+            margin-bottom: 1.5%;
+            border-bottom: 1px solid gray;
+            font-size: 125%;
+        }
+        .bol {
+            font-weight: bold;
+        }
+        .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    margin-top: 28%;
+    width: 100%;}
+    .row-content {
+      margin: 0px auto;
+      padding: 50px 0px; 
+    display: block;}
+    </style>
+    <%- include("header", {active: "Appointments List", adminname: adminname}); %>
+    <% today = new Date();%>
+    <% date = (today.getDate()); %>
+    <div class="row" role="group" style="margin-top: 5%;">
+      <div class="col-3 offset-md-1 btn-group" aria-label="Basic example">
+        <a href="/adminDashboard/appointmentslist" class="btn btn-warning">Current Appointments</a>
+        <a href="/adminDashboard/pastappointments" class="btn btn-secondary">Past Appointments</a>
+      </div>
+      <div class="col-4">
+        <div class="form-group row">
+            <div class="col-md-10 offset-1">
+                <div class="dropdown">
+                    <select name="filter" id="filter" class="form-control" style="width: 100%; border: 1px solid black;" onchange="fun()">
+                      <option class="dropdown-item" value="date">Date</option>
+                      <option class="dropdown-item" value="doctor">Doctor</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <form action="/adminDashboard/pastappointments" method="GET" class="form-group">
+            <div class="row">
+                <input type="text" name="search" placeholder="Search" class="form-control col-8">
+                <button type="submit" class="btn btn-warning offset-1 col-2">Search</button>
+            </div>
+        </form>
+      </div>
+    </div>
+    <div id="date">
+        <table class="table table-striped col-10 offset-md-1" style="margin-top: 5%;">
+            <thead>
+              <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Patient age</th>
+                <th scope="col">Patient gender</th>
+                <th scope="col">Booked date</th>
+                <th scope="col">Doctor</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <div>
+                    <% for(var i = 0; i < appointments.length; i++) { %>
+                        <% sortAppointments = [...appointments] %>
+                        <% sortAppointments.sort(function(obj1, obj2) { %>
+                            <% return obj1.date - obj2.date %>
+                        <% }); %>
+                        <% if(appointments[i].apptime!="Not yet confirmed" && sortAppointments[i].date<= date) { %>
+                          <tr>
+                              <td><%= sortAppointments[i].patientname %></td>
+                              <td><%= sortAppointments[i].patientage %></td>
+                              <td><%= sortAppointments[i].patientgender %></td>
+                              <td><%= sortAppointments[i].date %></td>
+                              <td><%= sortAppointments[i].docname %></td>         
+                              <input type="text" name="iter" id="iter" value="<%=i%>" class="d-none">
+                              <td>
+                                <form action="/adminDashboard/viewdetails" method="post">
+                                    <input name="name" value="<%= appointments[i].patientname %>" class="d-none" />
+                                    <button type="submit" class="btn btn-primary">Read more</button>
+                                </form>
+                            </td>
+                          </tr>
+                        <% } %>
+                      <% } %>
+                </div>
+            </tbody>
+        </table>
+    </div>
+    <div id="doctor" class="d-none">
+        <table class="table table-striped col-10 offset-md-1"style="margin-top: 5%;">
+            <thead>
+              <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Patient age</th>
+                <th scope="col">Patient gender</th>
+                <th scope="col">Booked date</th>
+                <th scope="col">Doctor</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <div>
+                    <% for(var i = 0; i < appointments.length; i++) { %>
+                        <% sortAppointments1 = [...appointments] %>
+                        <% sortAppointments1.sort(function(x, y) { %>
+                            <% let a = x.docname.toUpperCase(), b = y.docname.toUpperCase(); %>
+                            <% return a == b ? 0 : a > b ? 1 : -1; %>
+                        <% }); %>
+                        <% if(sortAppointments1[i].apptime!="Not yet confirmed") { %>
+                          <tr>
+                              <td><%= sortAppointments1[i].patientname %></td>
+                              <td><%= sortAppointments1[i].patientage %></td>
+                              <td><%= sortAppointments1[i].patientgender %></td>
+                              <td><%= sortAppointments1[i].date %></td>
+                              <td><%= sortAppointments1[i].docname %></td>
+                              <td> <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Read more</button>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Patient Name:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].patientname %>
+                                            </div>
+                                            <div class="col-6 bol col-md-2">
+                                                Patient Age:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].patientage %>
+                                            </div>
+                                        </div>
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Gender:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].patientgender %>
+                                            </div>
+                                            <div class="col-6 bol col-md-2">
+                                                Email id:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].patientemail %>
+                                            </div>
+                                        </div>
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Mobile:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].patientmobilenumber %>
+                                            </div>
+                                            <div class="col-6 bol col-md-2">
+                                                Location:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].patientloc %>
+                                            </div>
+                                        </div>
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Problem:
+                                            </div>
+                                            <div class="col-6 col-md-10">
+                                                <%= sortAppointments1[i].description %>
+                                            </div>
+                                        </div>
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Body Temp:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].bodytemp %>
+                                            </div>
+                                            <div class="col-6 bol col-md-2">
+                                                Pulse Rate:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].pulserate %>
+                                            </div>
+                                        </div>
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Respiration rate:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].resprate %>
+                                            </div>
+                                            <div class="col-6 bol col-md-2">
+                                                BP:
+                                            </div>
+                                            <div class="col-6 col-md-4">
+                                                <%= sortAppointments1[i].bp %>
+                                            </div>
+                                        </div>
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Prescription:
+                                            </div>
+                                            <div class="col-6 col-md-10">
+                                                <%= sortAppointments1[i].pres %>
+                                            </div>
+                                        </div>
+                                        <div class="row row-1">
+                                            <div class="col-6 bol col-md-2">
+                                                Recommendations:
+                                            </div>
+                                            <div class="col-6 col-md-10">
+                                                <%= sortAppointments1[i].recommendations %>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <form action="/patientDashboard/viewbillinginfo" method="post">
+                                            <input type="text" class="d-none" value="<%= sortAppointments1[i].patientname %>">
+                                            <button type="submit" class="btn btn-primary">Biiling Info</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div></td>
+                          </tr>
+                        <% } %>
+                      <% } %>
+                </div>
+            </tbody>
+        </table>
+    </div>
+    <footer class="footer">
+        <div class="offset-3 offset-md-5">
+            <p>© Copyright 2022 Health Vault</p>
+        </div>
+    </footer>
+    <script>
+        function fun() {
+            var filter = document.getElementById("filter").value;
+            if(filter=="doctor") {
+                document.getElementById("date").className="d-none";
+                document.getElementById("doctor").className="d-block";
+            }
+            else if(filter=="date") {
+                document.getElementById("doctor").className="d-none";
+                document.getElementById("date").className="d-block";
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+</body>
+</html>

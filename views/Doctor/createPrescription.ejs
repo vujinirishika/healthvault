@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+        .col-12 {
+            display: inline;
+        }
+        .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;}
+    .row-content {
+      margin: 0px auto;
+      padding: 50px 0px; 
+    display: block;}
+    </style>
+    <%- include("header", {active: "Appointments List", doctname: doctname}); %>
+    <div style="margin-top: 5%;">
+        <% if(username=="Staff123") { %>
+            <% k=0 %>
+            <% for( var i=0; i < appointments.length; i++) { %>
+                <% if(appointments[i].patientname == patientname) { %>
+                    <% k=i %>
+                <% } %>
+            <% } %>
+                <div style="margin-top: 3%;">
+                    <div class="form-group row">
+                        <div class="col-6 col-md-3" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Patient Name: &nbsp;<%= appointments[k].patientname %></div>
+                        <div class="col-6 col-md-2" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Patient age: &nbsp;<%= appointments[k].patientage %></div>
+                        <div class="col-6 col-md-2" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Gender: &nbsp;<%= appointments[k].patientgender %></div>
+                        <div class="col-6 col-md-5" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Description: &nbsp;<%= appointments[k].description %></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 offset-md-5" style="margin-top: 3%;">
+                        <h3>vitals</h3>
+                    </div>
+                    <div class="col-12 col-md-8 offset-md-2" style="margin-top: 3%;">
+                        <form action="/doctorDashboard/submitvitals" method="POST" novalidate id="user-form">
+                            <div class="form-group row">
+                                <div class="col-3">
+                                    Body Temperature: 
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" style="border: 1px solid black; width:100%" id="bodytemp" name="bodytemp" placeholder="Body Temperature" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-3">
+                                    Pulse Rate: 
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" style="border: 1px solid black; width:100%"id="pulserate" name="pulserate" placeholder="Pulse Rate" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-3">
+                                    Respiration Rate:
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" style="border: 1px solid black; width:100%"id="resprate" name="resprate" placeholder="Respiration Rate" required>
+                                </div>
+                            </div>  
+                            <div class="form-group row">
+                                <div class="col-3">
+                                    Blood Pressure: 
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" style="border: 1px solid black; width:100%"id="bp" name="bp" placeholder="Blood Pressure" required>
+                                </div>
+                            </div>  
+                            <input id="patientname" name="patientname" type="text" value="<%= appointments[k].patientname %>" class="d-none">
+                            <div class="col-md-2">
+                                <button type="submit"class="btn" style="border: 1px solid black; width:100%">
+                                    Submit
+                                </button><br><br><br><br><br>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+        <% } else { %>
+            <% k=0 %>
+            <% for( var i=0; i < appointments.length; i++) { %>
+                <% if(appointments[i].patientname == patientname) { %>
+                    <% k=i %>
+                <% } %>
+            <% } %>
+            <div style="margin-top: 3%;">
+                <div class="form-group row">
+                    <div class="col-6 col-md-3" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Patient Name: &nbsp;<%= appointments[k].patientname %></div>
+                    <div class="col-6 col-md-2" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Patient age: &nbsp;<%= appointments[k].patientage %></div>
+                    <div class="col-6 col-md-2" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Gender: &nbsp;<%= appointments[k].patientgender %></div>
+                    <div class="col-6 col-md-5" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Description: &nbsp;<%= appointments[k].description %></div>
+                </div>
+                <div class="form-group row" style="margin-bottom: 3%;">
+                    <div class="col-6 col-md-3" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Body Temperature: &nbsp;<%= appointments[k].bodytemp %></div>
+                    <div class="col-6 col-md-2" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Pulse Rate: &nbsp;<%= appointments[k].pulserate %></div>
+                    <div class="col-6 col-md-2" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Respiration Rate: &nbsp;<%= appointments[k].resprate %></div>
+                    <div class="col-6 col-md-5" style="border: 1px solid gray; background-color: lightgray; font-weight: bold;">Blood Pressure: &nbsp;<%= appointments[k].bp %></div>
+                </div>
+                <form action="/doctorDashboard/submitpres" method="post">
+                    <div class="form-group row">
+                        <div class=" offset-md-1 col-2">
+                            <b>Prescription:</b>
+                        </div>
+                        <div class="col-8">
+                            <textarea id="pres" name="pres" rows="8" cols="120"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class=" offset-md-1 col-2">
+                            <b>Recommendation:</b>
+                        </div>
+                        <div class="col-8">
+                            <textarea id="recommendations" name="recommendations" rows="8" cols="120"></textarea>
+                        </div>
+                    </div>
+                    <input id="patientname" name="patientname" type="text" value="<%= appointments[k].patientname %>" class="d-none">
+                    <div class="col-md-2 offset-md-5">
+                        <button type="submit"class="btn btn-success" style="border: 1px solid black; width:100%">
+                            Submit
+                        </button><br><br>
+                    </div>
+                </form>
+            </div>
+        <% } %>
+    </div>
+    <footer class="footer">
+        <div class="offset-3 offset-md-5">
+            <p>© Copyright 2022 Health Vault</p>
+        </div>
+    </footer>
+</body>
+</html>

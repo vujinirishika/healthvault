@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <style>
+    .foo {
+      margin-top: 13%;
+    }
+  </style>
+        <%- include("header", {active: "My Appointments", fullname: fullname}); %>
+        <div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 5%;">
+          <a href="/patientDashboard/myappointments" class="btn btn-secondary">Current Bookings</a>
+          <a href="/patientDashboard/mypastappointments" class="btn btn-warning">Previous Bookings</a>
+        </div>
+        <table id="current" class="table table-striped" style="margin-top: 5%; margin-bottom: 8%;">
+            <thead>
+              <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Doctor</th>
+                <th scope="col">Appointed time</th>
+                <!-- <th scope="col">Related document</th> -->
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < appointments.length; i++) {%>
+                        <tr>
+                            <% if(appointments[i].status == 0) { %>
+                              <td><%= appointments[i].patientname %></td>
+                              <td><%= appointments[i].date %></td>
+                              <td><%= appointments[i].description %></td>
+                              <td><%= appointments[i].docname %></td>
+                              <td><%= appointments[i].apptime %></td>
+                              <!-- <form action="/patientDashboard/submitpdf" method="post" enctype="multipart/form-data">
+                                <td><input class="form-group" type="file" name="pdf" id="pdf"></td>
+                                <input type="text" name="patientname" id="patientname" value="<%= appointments[i].patientname %>" class="d-none">
+                                <td><button type="submit" class="btn btn-primary">submit</button></td>
+                              </form> -->
+                            <% } %>
+                        </tr>
+                <% } %>
+            </tbody>
+          </table>
+          <div class="foo">
+            <%- include("footer"); %>
+          </div>
+</body>
+</html>

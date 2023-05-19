@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;
+margin-top: 2%;}
+        body         {
+            overflow-x: hidden;
+        }
+        .navbar-dark {
+   background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+   background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;}  
+        li {
+            font-weight:400;
+            font-size: 100%;
+        }
+        .display {
+            border: 1px solid black;
+            border-radius: 3px;
+            margin-top: 7.5%;
+            font-size: 160%;
+        }
+        
+          </style>
+</head>
+<body>
+    <%- include("header", {active: "", fullname: fullname}); %>
+    <div class="offset-md-3">
+        <div class="col-12 col-md-8">
+            <div class="display">
+                <div class="row d-none d-md-block" style="margin-bottom: 12%; margin-top: 5%;">
+                    <div class="offset-md-5">
+                        <span class="fa fa-user fa-lg" style="font-size: 700%;"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-1 col-4">
+                        Name:
+                    </div>
+                    <div class="col-4">
+                        <%= details.name %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-1 col-4">
+                        Age:
+                    </div>
+                    <div class="col-4">
+                        <%= details.age %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-1 col-4">
+                        Gender:
+                    </div>
+                    <div class="col-4">
+                        <%= details.gender %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-1 col-4">
+                        Email Id:
+                    </div>
+                    <div class="col-4">
+                        <%= details.email %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-1 col-4">
+                        Mobile Number:
+                    </div>
+                    <div class="col-4">
+                        <%= details.mobilenumber %>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 1%;">
+                    <div class="offset-md-1 col-4">
+                        Date Of Birth:
+                    </div>
+                    <div class="col-4">
+                        <%= details.dob %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include("footer"); %>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

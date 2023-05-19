@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .foo {
+            margin-top: 12%;
+        }
+        .foo1 {
+            margin-top: 40%;
+        }
+    </style>
+        <%- include("header", {active: "My Appointments", fullname: fullname}); %>
+        <div class="btn-group" role="group" aria-label="Basic example" style="margin-top: 5%;">
+          <a href="/patientDashboard/myappointments" class="btn btn-warning">Current Bookings</a>
+          <a href="/patientDashboard/mypastappointments" class="btn btn-secondary">Previous Bookings</a>
+        </div>
+        <div class="d-none d-md-block">
+            <table id="current" class="table table-striped" style="margin-top: 5%;">
+                <thead>
+                <tr>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Appointed time</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < appointments.length; i++) {%>
+                            <tr>
+                                <% if(appointments[i].status == 2) { %>
+                                <td><%= appointments[i].patientname %></td>
+                                <td><%= appointments[i].date %></td>
+                                <td><%= appointments[i].description %></td>
+                                <td><%= appointments[i].docname %></td>
+                                <td><%= appointments[i].apptime %></td>
+                                <td>
+                                    <form action="/patientDashboard/viewdetails" method="post">
+                                        <input name="name" value="<%= appointments[i].patientname %>" class="d-none" />
+                                        <button type="submit" class="btn btn-primary">Read more</button>
+                                    </form>
+                                </td>
+                                <% } %>
+                            </tr>
+                    <% } %>
+                </tbody>
+            </table>
+          </div>
+          <div class="d-block d-md-none">
+            <table id="current" class="table table-striped" style="margin-top: 5%;">
+            <thead>
+                <tr>
+                  <th scope="col">Patient Name</th>
+                  <th scope="col">Date</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% for(var i = 0; i < appointments.length; i++) {%>
+                          <tr>
+                              <% if(appointments[i].status == 2) { %>
+                                <td><%= appointments[i].patientname %></td>
+                                <td><%= appointments[i].date %></td>
+                                <td>
+                                  <form action="/patientDashboard/viewdetails" method="post">
+                                      <input name="name" value="<%= appointments[i].patientname %>" class="d-none" />
+                                      <button type="submit" class="btn btn-primary">Read more</button>
+                                  </form>
+                                </td>
+                              <% } %>
+                          </tr>
+                  <% } %>
+              </tbody>
+            </table>
+          </div>
+          <div class="foo d-none d-md-block">
+            <%- include("footer"); %>
+          </div>
+          <div class="foo1 d-block d-md-none">
+            <%- include("footer"); %>
+          </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

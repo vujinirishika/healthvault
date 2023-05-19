@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .row {
+            margin-bottom: 1%;
+        }
+        .register {
+            border: 1px solid gray;
+            margin-left: 1%;
+            margin-right: 1%;
+            margin-top: 5%;
+            margin-bottom: 1%;
+        }
+        .footer {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;
+margin-top: 15%;}
+.footer1 {
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;
+margin-top: 75%;}
+        .row-content {
+          margin: 0px auto;
+          padding: 50px 0px; 
+        display: block;}
+        .navbar-dark {
+   background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+   background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;}  
+        li {
+            font-weight:400;
+            font-size: 100%;
+        }
+        
+          </style>
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="/" style="font-weight: 500; margin-right: 7%;">
+                        <img src="https://imgs.search.brave.com/JyP5A6w3CJb5bMiSgBvGrwQfGhRbo-6KGdfT7fgVDf4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9tZWRp/YTEudGhlaHVuZ3J5/anBlZy5jb20vdGh1/bWJzMi9vcmlfMzY1/NzUyNl95Nmc5eDEz/bTA4MWtrczR5NHFi/cTg4ZHBxaHR1NTd6/dXFpeXZvMmpoX21v/bm9ncmFtLWh2LWxv/Z28tZGVzaWduLmpw/Zw" alt="logo" height="60px" width="60px" style="margin-right: 2%;">
+                        <span class="d-none d-md-inline-block" href="/">
+                          Healt Vault
+                        </span>
+                    </a>
+                    <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </a>
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item menu-item">
+                            <a class="nav-link"  href="/"><span class="fa fa-home fa-lg"></span> Home&nbsp; &nbsp;</a>
+                        </li>
+                        <li class="nav-item menu-item">
+                            <a class="nav-link"  href="/patientDashboard/bookappointment"><span class="far fa-calendar-check fa-lg"></span> Book Appointment&nbsp; &nbsp;</a>
+                        </li>
+                        <li class="nav-item menu-item">
+                            <a class="nav-link"  href="/patientDashboard/contactus"><span class="fa fa-address-card fa-lg"></span> Contact</a>
+                        </li>
+                      </ul>
+                      <form class="form-inline my-2 my-lg-0">
+                        <a role="button" class="btn btn-success my-2 my-sm-0" href="/login" style="color: white;" type="submit"><i class="fas fa-sign-in-alt"></i> &nbsp;Login</a>
+                      </form>
+                    </div>
+                  </nav>
+            </header>
+                <div class="register">
+                    <center><h4>Patient Registration</h4></center><br>
+                    <form action="/registeruser" method="POST" class="form-group">
+                        <div class="row">
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="username">UserName</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="text" id="username" name="username">
+                            </div>
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="password" id="password" name="password">
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="text" id="name" name="name">
+                            </div>
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="age">Age</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="text" id="age" name="age">
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="text" id="email" name="email">
+                            </div>
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="dob">Date Of Birth</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="date"  class="form-control" id="dob" name="dob">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="mobilenumber">Mobile No:-</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="text" name="mobilenumber" id="mobilenumber">
+                            </div>
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <label for="gender">Gender</label>
+                            </div>
+                            <div class="col-6 col-md-2">
+                                <input type="radio" name="gender" value="Male">
+                                <label for="male">Male</label>
+                                <input type="radio" name="gender" value="Female">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2 offset-md-5">
+                                <button type="submit" class="btn btn-primary">submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+           <footer class="footer d-none d-md-block">
+            <div class="offset-2 offset-md-5">
+                <p>© Copyright 2022 Health Vault</p>
+            </div>
+        </footer>
+        <footer class="footer1 d-block d-md-none">
+            <div class="offset-2 offset-md-5">
+                <p>© Copyright 2022 Health Vault</p>
+            </div>
+        </footer>
+           <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+           <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+           <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

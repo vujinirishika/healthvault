@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <style>
+    .row-content {
+      margin: 0px auto;
+      padding: 50px 0px; 
+    display: block;}
+    .navbar-dark {
+background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;}  
+    li {
+        font-weight:400;
+        font-size: 100%;
+    }
+  </style>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/patientDashboard/" style="font-weight: 500;; margin-right: 7%;">
+          <img src="https://imgs.search.brave.com/JyP5A6w3CJb5bMiSgBvGrwQfGhRbo-6KGdfT7fgVDf4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9tZWRp/YTEudGhlaHVuZ3J5/anBlZy5jb20vdGh1/bWJzMi9vcmlfMzY1/NzUyNl95Nmc5eDEz/bTA4MWtrczR5NHFi/cTg4ZHBxaHR1NTd6/dXFpeXZvMmpoX21v/bm9ncmFtLWh2LWxv/Z28tZGVzaWduLmpw/Zw" alt="logo" height="60px" width="60px" style="margin-right: 2%;">
+            Health Vault
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item menu-item">
+              <% if(active == "Home"){ %>
+                <a class="nav-link active"  href="/patientDashboard/"><span class="fa fa-home fa-lg"></span> Home&nbsp; &nbsp;</a>
+              <% }
+              else{ %>
+                <a class="nav-link"  href="/patientDashboard/"><span class="fa fa-home fa-lg"></span> Home&nbsp; &nbsp;</a>
+              <% }%>
+            </li>
+            <li class="nav-item menu-item">
+              <% if(active == "Book Appointment"){ %>
+                <a class="nav-link active"  href="/patientDashboard/bookappointment"><span class="fa fa-calendar-check fa-lg"></span> Book Appointment&nbsp; &nbsp;</a>
+              <% }
+              else{ %>
+                <a class="nav-link"  href="/patientDashboard/bookappointment"><span class="fa fa-calendar-check fa-lg"></span> Book Appointment&nbsp; &nbsp;</a>
+              <% }%>
+            </li>
+            <li class="nav-item menu-item">
+              <% if(active == "My Appointments"){ %>
+                <a class="nav-link active"  href="/patientDashboard/myappointments"><span class="fas fa-book fa-lg"></span> My Appointments&nbsp; &nbsp;</a>
+              <% }
+              else{ %>
+                <a class="nav-link"  href="/patientDashboard/myappointments"><span class="fas fa-book fa-lg"></span> My Appointments&nbsp; &nbsp;</a>
+              <% }%>
+            </li>
+            <li class="nav-item menu-item">
+              <% if(active == "contact"){ %>
+                <a class="nav-link active"  href="/patientDashboard/contactus"><span class="fa fa-address-card fa-lg"></span> Contact&nbsp; &nbsp;</a>
+              <% }
+              else{ %>
+                <a class="nav-link"  href="/patientDashboard/contactus"><span class="fa fa-address-card fa-lg"></span> Contact&nbsp; &nbsp;</a>
+              <% }%>
+            </li>
+          </ul>
+          <div class="btn-group">
+            <a class="btn" style="border: 1px solid white; border-radius: 25px;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-user fa-lg" style="color: white;">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#"><%=fullname%></a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/patientDashboard/profile">Profile Details</a>
+              <div class="dropdown-divider"></div>
+              <form action="/patientDashboard/logout" method="post"  class="form-inline">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                <button class="btn btn-danger" style="color: white;" type="submit"><i class="fas fa-sign-out-alt" style="font-size: 105%;"></i>&nbsp;&nbsp;Logout</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <body>
+      
+    </body>
+ 
